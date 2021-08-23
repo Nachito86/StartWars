@@ -1,4 +1,8 @@
-import { LightningElement,api } from 'lwc';
+import { publish, MessageContext } from 'lightning/messageService';
+import { LightningElement,wire,api  } from 'lwc';
+ import PJ_START_WAR_MESSAGE from '@salesforce/messageChannel/Contact';
+ 
+ 
 
 export default class PjStartWar extends LightningElement {
 
@@ -13,6 +17,8 @@ export default class PjStartWar extends LightningElement {
         Planeta:false,
         URL:false
     }
+    refreshdata=false;
+    @wire(MessageContext) messageContext;
     connectedCallback(){
         this.readonlyvar.FirstName=this.contacts.FirstName==null?
         false:this.contacts.FirstName=='n/a'?
@@ -30,6 +36,10 @@ export default class PjStartWar extends LightningElement {
     handleSuccess(event) {
         this.contacts =null;
         this.messagenocontacts='Personaje creado, por favor digite otro número';
+        const message = {
+            refreshdata: true,
+            };
+        publish(this.messageContext, PJ_START_WAR_MESSAGE, message); 
         //this.contactid = event.detail.id;
         const toastEvent = new ShowToastEvent({
             title: "Contact created handle",
@@ -37,5 +47,11 @@ export default class PjStartWar extends LightningElement {
             variant: "success"
         });
         this.dispatchEvent(toastEvent);
+       
     }
+
+    disconnectedCallback() {
+        unsubscribe(this.subscription);
+        this.subscription = null;
+      }
 }

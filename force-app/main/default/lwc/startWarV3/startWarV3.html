@@ -6,8 +6,8 @@
             <div class="slds-m-around_medium">
                 <template if:true={contacts}>
                     <br/>
-                    <c-pj-start--war contacts={contacts}></c-pj-start--war>
-                    <!--
+                     <!-- <c-pj-start--war contacts={contacts}></c-pj-start--war> -->
+                  
                     <lightning-card title={titlecard}>
                             <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess} onerror={erroralguardar} >
                             <lightning-input-field field-name='FirstName' readonly={readonlyvar.FirstName} required="true" value={contacts.FirstName}></lightning-input-field>
@@ -25,7 +25,7 @@
                             </lightning-button>
                         </lightning-record-edit-form>
                     </lightning-card>
-                    -->
+                   
                 </template>
                 <template if:false={contacts}>
                     <div class="slds-p-bottom_large slds-p-left_large">

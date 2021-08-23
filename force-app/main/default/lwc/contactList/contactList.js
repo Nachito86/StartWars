@@ -1,9 +1,11 @@
-import { LightningElement,wire } from 'lwc';
+import { LightningElement,wire,track } from 'lwc';
 
 import FIRST_NAME_FIELD from '@salesforce/schema/Contact.FirstName';
 import LAST_NAME_FIELD from '@salesforce/schema/Contact.LastName';
 import PERSONAJENUM_FIELD from '@salesforce/schema/Contact.Personajenum__c';
 import getContacts from '@salesforce/apex/CharacterController.getContacts';
+
+//import PJ_START_WAR_MESSAGE from '@salesforce/messageChannel/Contact';
 
 const COLUMNS = [
     { label: 'Nombre', fieldName: FIRST_NAME_FIELD.fieldApiName, type: 'text' },
@@ -13,7 +15,11 @@ const COLUMNS = [
 
 
 export default class ContactList extends LightningElement {
+
+
     columns = COLUMNS;
     @wire(getContacts)contacts;
+   
+   
 }
 
