@@ -1,0 +1,19 @@
+<template>
+    <div style="width:700px">
+        <template if:true={contacts}>
+            <lightning-card title="LISTADO DE CONTACTOS">
+                <template if:true={contacts.data}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={contacts.data}
+                        columns={columns}
+                    >
+                </lightning-datatable>
+                </template>
+            </lightning-card>
+        </template>
+        <template if:true={error}>
+            <p>Error: {error}</p>
+        </template>
+    </div>
+</template>
