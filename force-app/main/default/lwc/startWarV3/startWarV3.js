@@ -48,7 +48,7 @@ export default class StartWarV3 extends LightningElement {
                 this.readonlyvar.Planeta=this.contacts.Planeta__c==null?false:this.contacts.Planeta__c=='n/a'?false:this.contacts.Planeta__c=='Unknow'?false:true;
                 this.readonlyvar.URL=this.contacts.URL__c==null?false:this.contacts.URL__c=='n/a'?false:this.contacts.URL__c=='Unknow'?false:true;
                  this.readonlyvar.gender=this.contacts.gender==null?false:this.contacts.gender=='n/a'?false:this.contacts.gender=='Unknow'?false:true;
-                 
+                 //final de validaciones ReanOnly
                 if(result.FirstName!=null){
                   this.titlecard='Creacion de personaje: ' + result.FirstName;
                   }
