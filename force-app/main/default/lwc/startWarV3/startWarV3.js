@@ -5,6 +5,7 @@ import { LightningElement,wire,track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent'
 import GetCharacter from '@salesforce/apex/CharacterController.getCharacter';
 
+
 export default class StartWarV3 extends LightningElement {
     
     @track contactid;
@@ -34,6 +35,7 @@ export default class StartWarV3 extends LightningElement {
 	}
     
     handleClick() {
+        this.contacts =null;
         GetCharacter({  numPj: this.numPj })
             .then((result) => {
                 if(result.FirstName!=undefined){
@@ -71,7 +73,7 @@ export default class StartWarV3 extends LightningElement {
     }
     //Eventos del Form-record
     handleSuccess(event) {
-        //this.contacts =null;
+        this.contacts =null;
         this.messagenocontacts='Personaje creado, por favor digite otro número';
         // const message = {
         //     refreshdata: true,
@@ -87,9 +89,11 @@ export default class StartWarV3 extends LightningElement {
     }
   
     erroralguardar(event){
-        this.delayTimeout = setTimeout(() => {
-            this.contacts =null;
-		}, 5000);
+        //esta era una idea que esperar 5 segundos y luego esconder el template volviendo contacts=null;
+        //pero al final se resolvio en el mismo click,..
+        // this.delayTimeout = setTimeout(() => {
+        //     this.contacts =null;
+		// }, 5000);
       
     }
 }
