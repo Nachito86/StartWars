@@ -9,16 +9,16 @@
                      <!-- <c-pj-start--war contacts={contacts}></c-pj-start--war> -->
                   
                     <lightning-card title={titlecard}>
-                            <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess} onerror={erroralguardar} >
-                            <lightning-input-field field-name='FirstName' readonly={readonlyvar.FirstName} required="true" value={contacts.FirstName}></lightning-input-field>
+                            <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess} onerror={erroralguardar}>
+                            <lightning-input-field field-name='FirstName' disabled={readonlyvar.FirstName} required="true" value={contacts.FirstName}></lightning-input-field>
                             <lightning-input-field field-name='LastName'   required="true"></lightning-input-field>
-                            <lightning-input-field field-name='Personajenum__c' readonly={readonlyvar.Personajenum}  required="true" value={contacts.Personajenum__c}></lightning-input-field>
-                            <lightning-input-field field-name='gender__c' value={contacts.gender__c} readonly={readonlyvar.gender} data-id="genderDom"></lightning-input-field>
-                            <lightning-input-field field-name='Color_de_cabello__c' readonly={readonlyvar.Color_de_cabello}  value={contacts.Color_de_cabello__c}  data-id="colorhairDom"></lightning-input-field>
-                            <lightning-input-field field-name='Color_de_ojos__c' readonly={readonlyvar.Color_de_ojos}  value={contacts.Color_de_ojos__c}></lightning-input-field>
-                            <lightning-input-field field-name='Altura__c' readonly={readonlyvar.Altura} value={contacts.Altura__c}></lightning-input-field>
-                            <lightning-input-field field-name='Planeta__c' readonly={readonlyvar.Planeta}  value={contacts.Planeta__c}></lightning-input-field>
-                            <lightning-input-field field-name='URL__c' readonly={readonlyvar.URL}  value={contacts.URL__c}></lightning-input-field>
+                            <lightning-input-field field-name='Personajenum__c' disabled={readonlyvar.Personajenum} required="true" value={contacts.Personajenum__c}></lightning-input-field>
+                            <lightning-input-field field-name='gender__c' value={contacts.gender__c} disabled={readonlyvar.gender} data-id="genderDom"></lightning-input-field>
+                            <lightning-input-field field-name='Color_de_cabello__c' disabled={readonlyvar.Color_de_cabello}  value={contacts.Color_de_cabello__c}  data-id="colorhairDom"></lightning-input-field>
+                            <lightning-input-field field-name='Color_de_ojos__c' disabled={readonlyvar.Color_de_ojos}  value={contacts.Color_de_ojos__c}></lightning-input-field>
+                            <lightning-input-field field-name='Altura__c' disabled={readonlyvar.Altura} value={contacts.Altura__c}></lightning-input-field>
+                            <lightning-input-field field-name='Planeta__c' disabled={readonlyvar.Planeta}  value={contacts.Planeta__c}></lightning-input-field>
+                            <lightning-input-field field-name='URL__c' disabled={readonlyvar.URL}  value={contacts.URL__c}></lightning-input-field>
                             <lightning-messages>
                             </lightning-messages>
                             <lightning-button class="slds-m-top_small" type="submit" label="Crear personaje">

@@ -71,7 +71,7 @@ export default class StartWarV3 extends LightningElement {
     }
     //Eventos del Form-record
     handleSuccess(event) {
-        this.contacts =null;
+        //this.contacts =null;
         this.messagenocontacts='Personaje creado, por favor digite otro número';
         // const message = {
         //     refreshdata: true,
@@ -85,7 +85,7 @@ export default class StartWarV3 extends LightningElement {
         });
         this.dispatchEvent(toastEvent);
     }
-
+  
     erroralguardar(event){
         this.delayTimeout = setTimeout(() => {
             this.contacts =null;
