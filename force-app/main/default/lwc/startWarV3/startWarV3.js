@@ -87,6 +87,18 @@ export default class StartWarV3 extends LightningElement {
         });
         this.dispatchEvent(toastEvent);
     }
+
+    handleReset(event) {
+        const inputFields = this.template.querySelectorAll(
+            'lightning-input-field'
+        );
+        if (inputFields) {
+            inputFields.forEach(field => {
+                field.reset();
+            });
+        }
+        this.contacts =false;
+     }
   
     erroralguardar(event){
         //esta era una idea que esperar 5 segundos y luego esconder el template volviendo contacts=null;
@@ -96,4 +108,11 @@ export default class StartWarV3 extends LightningElement {
 		// }, 5000);
       
     }
+    handleCrear(){
+        //ambas formas se pueden.
+        //this.template.querySelector('lightning-record-edit-form').submit();
+        this.template.querySelector('[data-id="formcontact"]').submit();
+    }
+
+
 }
