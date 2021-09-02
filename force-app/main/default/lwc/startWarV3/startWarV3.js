@@ -71,48 +71,15 @@ export default class StartWarV3 extends LightningElement {
                 this.contacts = undefined;
             });
     }
-    //Eventos del Form-record
-    handleSuccess(event) {
+    handcreadopj(event){
         this.contacts =null;
         this.messagenocontacts='Personaje creado, por favor digite otro número';
-        // const message = {
-        //     refreshdata: true,
-        //     };
-        // publish(this.messageContext, PJ_START_WAR_MESSAGE, message); 
-        //this.contactid = event.detail.id;
         const toastEvent = new ShowToastEvent({
             title: "Contact created handle",
-            message: "Record ID: " + event.detail.id,
+            message: "Record ID: " + event.detail,
             variant: "success"
         });
         this.dispatchEvent(toastEvent);
     }
-
-    handleReset(event) {
-        const inputFields = this.template.querySelectorAll(
-            'lightning-input-field'
-        );
-        if (inputFields) {
-            inputFields.forEach(field => {
-                field.reset();
-            });
-        }
-        this.contacts =false;
-     }
-  
-    erroralguardar(event){
-        //esta era una idea que esperar 5 segundos y luego esconder el template volviendo contacts=null;
-        //pero al final se resolvio en el mismo click,..
-        // this.delayTimeout = setTimeout(() => {
-        //     this.contacts =null;
-		// }, 5000);
-      
-    }
-    handleCrear(){
-        //ambas formas se pueden.
-        //this.template.querySelector('lightning-record-edit-form').submit();
-        this.template.querySelector('[data-id="formcontact"]').submit();
-    }
-
 
 }
