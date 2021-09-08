@@ -1,0 +1,115 @@
+<aura:component controller="CharacterController" implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
+    <aura:attribute name="numpj" type="String" default="1"></aura:attribute>
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    
+    <aura:attribute name="personajec" type="Contact" />
+    <!-- Estas variables me las ahorro con la variable/atributo personajec, que trae la data en el obejto contacto -->
+
+    <!-- <aura:attribute name="firstNameatt" type="String" default=""></aura:attribute>
+    <aura:attribute name="Personajenumatt" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="genderatt" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="Color_de_cabelloatt" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="Color_de_ojosatt" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="Alturaatt" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="Planetaatt" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="URLatt" type="String" default="n/a"></aura:attribute> -->
+
+    <aura:attribute name="FirstNameDis" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="PersonajenumDis" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="genderDis" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="Color_de_cabelloDis" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="Color_de_ojosDis" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="AlturaDis" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="PlanetaDis" type="String" default="n/a"></aura:attribute>
+    <aura:attribute name="URLDis" type="String" default="n/a"></aura:attribute>
+
+    <aura:attribute name="outInfo" type="boolean" default="false" ></aura:attribute>
+    <aura:attribute name="OpcionesVisita" type="String[]" default="Si,No"/>
+    <aura:attribute name="seRealizoVisita" type="boolean" default="false"/>
+
+    
+    <lightning:card title="Creación Caracter" >
+        
+            <lightning:input name="input1" aura:id="lblnumpj" value="{!v.numpj}" label="Digite el número de Personaje" />
+            <br/>
+            <lightning:button variant="brand" label="Buscar Personaje" title="Brand action" onclick="{!c.handleClicksearchpj}" />
+            <br/>
+            <aura:if isTrue="{!v.outInfo}">
+                <strong>NO se encuentra el personaje.</strong>
+            </aura:if>
+           
+            <!-- <lightning:select value="{!v.seRealizoVisita}" label="Rating">       
+                    <aura:iteration items="{!v.OpcionesVisita}" var="s">
+                            <option value="{!s}">{!s}</option>
+                    </aura:iteration> 
+            </lightning:select>  -->
+            <div id="tieneVisita" style="width: 190px;">
+                    <lightning:select value="{!v.seRealizoVisita}" label="¿Se realizó una visita de negocio?" >       
+                                <option value="true">Si</option>
+                                <option value="false">No</option>
+                    </lightning:select> 
+            </div>
+        
+            <aura:if isTrue="{!v.isModalOpen}">
+                <!--<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">-->
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel}"    
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Modal/PopUp Box</h2>
+                    </header>
+                     <!--Modal/Popup Box Body Starts here-->
+                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:recordEditForm
+                                aura:id="recordform"
+                                onload="{!c.handleLoad}"
+                                onsubmit="{!c.handleSubmit}"
+                                onsuccess="{!c.handleSuccess}"
+                                objectApiName="Contact" >
+                            <lightning:messages />
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning:inputField fieldName='FirstName' value="{!v.personajec.FirstName}" aura:id="firstNameid" disabled="{!v.FirstNameDis}" />
+                                    <lightning:inputField fieldName='LastName'  />
+                                    <lightning:inputField fieldName='Personajenum__c' value="{!v.personajec.Personajenum__c}" aura:id="personajeNumid" disabled="{!v.PersonajenumDis}"   />
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning:inputField fieldName='gender__c' value="{!v.personajec.gender__c}" aura:id="genderid" disabled="{!v.genderDis}" />
+                                    <lightning:inputField fieldName='Color_de_cabello__c' value="{!v.personajec.Color_de_cabello__c}" aura:id="Color_de_cabelloid" disabled="{!v.Color_de_cabelloDis}" />
+                                    <lightning:inputField fieldName='Color_de_ojos__c' value="{!v.personajec.Color_de_ojos__c}" aura:id="Color_de_ojosid" disabled="{!v.Color_de_ojosDis}" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning:inputField fieldName='Altura__c' value="{!v.personajec.Altura__c}" aura:id="Alturaid" disabled="{!v.AlturaDis}" />
+                                    <lightning:inputField fieldName='Planeta__c' value="{!v.personajec.Planeta__c}" aura:id="Planetaid" disabled="{!v.PlanetaDis}" />
+                                    <lightning:inputField fieldName='URL__c' value="{!v.personajec.URL__c}" aura:id="URLid" disabled="{!v.URLDis}" />
+                                </div>
+                            </div>
+                            <!--<lightning:button class="slds-m-top_small" variant="brand" type="submit" name="crearPj" label="Crear Caracter" />-->
+                        </lightning:recordEditForm>
+                     </div>
+                      <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel}"/>
+                        <lightning:button variant="brand"
+                                          label="Crear Personaje"
+                                          title="Crear Personaje"
+                                          onclick="{!c.submitDetails}"/>
+                                          <lightning:button variant="brand"
+                                          label="Clean"
+                                          title="Clean"
+                                          onclick="{!c.cleanf}"/>
+                    </footer>
+                </section>
+                <!--Da el efecto background beahind-->
+                <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+
+    </lightning:card>
+</aura:component>	
