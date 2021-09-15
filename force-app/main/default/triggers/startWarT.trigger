@@ -9,7 +9,7 @@ trigger startWarT on Contact (before insert) {
     }
    }
   
-        List<Contact> contacts= [SELECT Id,Name,Altura__c,	Color_de_cabello__c,Color_de_ojos__c,URL__c,Personajenum__c,Planeta__c,FirstName,LastName
+        List<Contact> contacts= [SELECT Id,Name,Altura__c,  Color_de_cabello__c,Color_de_ojos__c,URL__c,Personajenum__c,Planeta__c,FirstName,LastName
                                     FROM Contact  WHERE Personajenum__c in:idCOntacts
                                 ]; 
                                 
@@ -29,5 +29,3 @@ trigger startWarT on Contact (before insert) {
             
     
 }
-    
-

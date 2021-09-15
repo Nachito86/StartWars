@@ -32,10 +32,15 @@
         const fields = event.getParam('fields');
         component.find('recordform').submit(fields);
     },
-    cleanf:function(component,event,helper){
-        component.find('field').forEach(function(f) {
-            f.reset();
-        });
+    openflow:function(component,event,helper){
+        try{
+            var flow = component.find("flowData");
+            flow.startFlow("testAlbertV1");
+        }catch(error){
+            var meesage= error;
+            var ok="";
+        }
+
     },
     handleClicksearchpj:function(component,event,helper){
         var seRealizoVisita=component.get("v.seRealizoVisita");

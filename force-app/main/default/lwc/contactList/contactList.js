@@ -22,4 +22,3 @@ export default class ContactList extends LightningElement {
    
    
 }
-
